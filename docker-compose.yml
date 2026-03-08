@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgres:18-alpine
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: reactivities
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  mailcatcher:
+    image: schickling/mailcatcher
+    restart: unless-stopped
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+
+volumes:
+  pgdata:
