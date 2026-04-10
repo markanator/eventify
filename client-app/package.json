@@ -22,7 +22,7 @@
 		"@heroicons/react": "^2.2.0",
 		"@loadable/component": "^5.16.7",
 		"@microsoft/signalr": "^10.0.0",
-		"axios": "^1.13.6",
+		"axios": "^1.15.0",
 		"dayjs": "^1.11.19",
 		"formik": "^2.4.9",
 		"framer-motion": "^12.35.1",
