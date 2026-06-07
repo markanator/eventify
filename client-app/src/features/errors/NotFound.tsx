@@ -21,14 +21,13 @@ const NotFound = () => {
 			</Text>
 
 			<Button
-				as={Link}
-				to="/activities"
-				colorScheme="teal"
+				asChild
+				colorPalette="teal"
 				bgGradient="linear(to-r, teal.400, teal.500, teal.600)"
 				color="white"
 				variant="solid"
 			>
-				Go to Home
+				<Link to="/activities">Go to Home</Link>
 			</Button>
 		</Box>
 	);

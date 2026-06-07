@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from "@chakra-ui/icons";
+import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import {
 	Box,
 	Button,
@@ -6,14 +6,13 @@ import {
 	Icon,
 	Link as CLINK,
 	Popover,
-	PopoverContent,
-	PopoverTrigger,
+	Portal,
 	Stack,
 	Text,
-	useColorModeValue,
 } from "@chakra-ui/react";
-import { NavItem, NAV_ITEMS } from "./MobileNav";
 import { Link, NavLink } from "react-router-dom";
+import { NAV_ITEMS, type NavItem } from "./MobileNav";
+import { useColorModeValue } from "./ui/color-mode";
 
 const DesktopNav = () => {
 	const linkColor = useColorModeValue("gray.600", "gray.200");
@@ -21,12 +20,13 @@ const DesktopNav = () => {
 	const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
 	return (
-		<Stack direction={"row"} spacing={4} alignItems="center">
+		<Stack direction={"row"} gap={4} alignItems="center">
 			{NAV_ITEMS.map((navItem) => (
 				<Box key={navItem.label}>
-					<Popover trigger={"hover"} placement={"bottom-start"}>
-						<PopoverTrigger>
+					<Popover.Root positioning={{ placement: "bottom-start" }}>
+						<Popover.Trigger asChild>
 							<CLINK
+								asChild
 								p={2}
 								fontSize={"sm"}
 								fontWeight={500}
@@ -35,34 +35,39 @@ const DesktopNav = () => {
 									textDecoration: "none",
 									color: linkHoverColor,
 								}}
-								as={NavLink}
-								to={navItem.href ?? "#"}
 							>
-								{navItem.label}
+								<NavLink to={navItem.href ?? "#"}>{navItem.label}</NavLink>
 							</CLINK>
-						</PopoverTrigger>
+						</Popover.Trigger>
 
 						{navItem.children && (
-							<PopoverContent
-								border={0}
-								boxShadow={"xl"}
-								bg={popoverContentBgColor}
-								p={4}
-								rounded={"xl"}
-								minW={"sm"}
-							>
-								<Stack>
-									{navItem.children.map((child) => (
-										<DesktopSubNav key={child.label} {...child} />
-									))}
-								</Stack>
-							</PopoverContent>
+							<Portal>
+								<Popover.Positioner>
+									<Popover.Content
+										border={0}
+										boxShadow={"xl"}
+										bg={popoverContentBgColor}
+										p={4}
+										rounded={"xl"}
+										minW={"sm"}
+									>
+										<Popover.Body p={0}>
+											<Stack>
+												{navItem.children.map((child) => (
+													<DesktopSubNav key={child.label} {...child} />
+												))}
+											</Stack>
+										</Popover.Body>
+									</Popover.Content>
+								</Popover.Positioner>
+							</Portal>
 						)}
-					</Popover>
+					</Popover.Root>
 				</Box>
 			))}
 			<Box>
 				<Button
+					asChild
 					p={2}
 					fontSize={"sm"}
 					fontWeight={500}
@@ -71,10 +76,8 @@ const DesktopNav = () => {
 						textDecoration: "none",
 						color: linkHoverColor,
 					}}
-					as={Link}
-					to={"/activities/create"}
 				>
-					Create Activity
+					<Link to={"/activities/create"}>Create Activity</Link>
 				</Button>
 			</Box>
 		</Stack>
@@ -82,6 +85,7 @@ const DesktopNav = () => {
 };
 
 const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+	const hoverBg = useColorModeValue("pink.50", "gray.900");
 	return (
 		<CLINK
 			href={href}
@@ -89,7 +93,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 			display={"block"}
 			p={2}
 			rounded={"md"}
-			_hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+			_hover={{ bg: hoverBg }}
 		>
 			<Stack direction={"row"} align={"center"}>
 				<Box>
@@ -107,7 +111,9 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 					align={"center"}
 					flex={1}
 				>
-					<Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
+					<Icon color={"pink.400"} w={5} h={5}>
+						<ChevronRightIcon />
+					</Icon>
 				</Flex>
 			</Stack>
 		</CLINK>

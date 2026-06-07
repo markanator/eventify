@@ -4,8 +4,8 @@ import {
 	Skeleton,
 	SkeletonCircle,
 	SkeletonText,
-	useColorModeValue,
 } from "@chakra-ui/react";
+import { useColorModeValue } from "../../../components/ui/color-mode";
 import React from "react";
 
 const ListItemSkeleton = () => {
@@ -18,7 +18,7 @@ const ListItemSkeleton = () => {
 				<SkeletonText noOfLines={1} />
 			</HStack>
 			<Skeleton height="320px" />
-			<SkeletonText mt="4" noOfLines={4} spacing={6} />
+			<SkeletonText mt="4" noOfLines={4} gap={6} />
 		</Box>
 	);
 };

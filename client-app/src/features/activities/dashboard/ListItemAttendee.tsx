@@ -1,14 +1,8 @@
-import {
-	Avatar,
-	HStack,
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-	useDisclosure,
-} from "@chakra-ui/react";
+import { HStack, Popover, Portal, useDisclosure } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import ProfileCard from "~/features/profiles/ProfileCard";
 import { Profile } from "~/types";
+import { Avatar } from "../../../components/ui/avatar";
 
 type Props = {
 	attendees?: Profile[];
@@ -24,18 +18,17 @@ const ListItemAttendee = ({ attendees }: Props) => {
 };
 
 const AttendeePopover = ({ profile }: { profile: Profile }) => {
-	const { isOpen, onClose, onOpen } = useDisclosure();
+	const { open, onClose, onOpen } = useDisclosure();
 	return (
-		<Popover
+		<Popover.Root
 			key={profile.username}
-			isLazy
-			returnFocusOnClose={false}
-			isOpen={isOpen}
-			onClose={onClose}
-			placement="top-start"
-			closeOnBlur={false}
+			lazyMount
+			open={open}
+			onOpenChange={(e) => (e.open ? onOpen() : onClose())}
+			positioning={{ placement: "top-start" }}
+			closeOnInteractOutside={false}
 		>
-			<PopoverTrigger>
+			<Popover.Trigger asChild>
 				<Link to={`/profiles/${profile.username}`} onMouseEnter={onOpen} onMouseLeave={onClose}>
 					<Avatar
 						border="2px solid var(--chakra-colors-gray-100)"
@@ -49,13 +42,17 @@ const AttendeePopover = ({ profile }: { profile: Profile }) => {
 						name={profile.displayName}
 					/>
 				</Link>
-			</PopoverTrigger>
-			<PopoverContent id="content">
-				<>
-					<ProfileCard profile={profile} />
-				</>
-			</PopoverContent>
-		</Popover>
+			</Popover.Trigger>
+			<Portal>
+				<Popover.Positioner>
+					<Popover.Content id="content">
+						<Popover.Body p={0}>
+							<ProfileCard profile={profile} />
+						</Popover.Body>
+					</Popover.Content>
+				</Popover.Positioner>
+			</Portal>
+		</Popover.Root>
 	);
 };
 

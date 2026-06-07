@@ -1,35 +1,37 @@
-import React from "react";
 import {
 	Button,
-	Modal,
-	ModalBody,
-	ModalCloseButton,
-	ModalContent,
-	ModalOverlay,
+	CloseButton,
+	Dialog,
+	Portal,
 	useDisclosure,
 } from "@chakra-ui/react";
 import RegisterForm from "./RegisterForm";
 
 const RegisterModal = () => {
-	const {
-		isOpen: isRegisterOpen,
-		onOpen: onRegisterOpen,
-		onClose: onRegisterClose,
-	} = useDisclosure();
+	const { open, onOpen, onClose } = useDisclosure();
 	return (
 		<>
-			<Button onClick={onRegisterOpen} variant="link">
+			<Button onClick={onOpen} variant="plain">
 				Register
 			</Button>
-			<Modal isOpen={isRegisterOpen} onClose={onRegisterClose}>
-				<ModalOverlay />
-				<ModalContent>
-					<ModalCloseButton />
-					<ModalBody>
-						<RegisterForm />
-					</ModalBody>
-				</ModalContent>
-			</Modal>
+			<Dialog.Root
+				open={open}
+				onOpenChange={(e) => (e.open ? onOpen() : onClose())}
+			>
+				<Portal>
+					<Dialog.Backdrop />
+					<Dialog.Positioner>
+						<Dialog.Content>
+							<Dialog.CloseTrigger asChild>
+								<CloseButton size="sm" />
+							</Dialog.CloseTrigger>
+							<Dialog.Body>
+								<RegisterForm />
+							</Dialog.Body>
+						</Dialog.Content>
+					</Dialog.Positioner>
+				</Portal>
+			</Dialog.Root>
 		</>
 	);
 };

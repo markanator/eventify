@@ -20,12 +20,12 @@ const FollowButton = ({ profile, followProps, unfollowProps, stackProps }: Props
 		updateFollowing(username, !profile.following);
 	};
 	return (
-		<HStack spacing={4} w="full" {...stackProps}>
+		<HStack gap={4} w="full" {...stackProps}>
 			{profile?.following ? (
 				<Button
 					w="full"
-					colorScheme={"red"}
-					isLoading={isLoading}
+					colorPalette={"red"}
+					loading={isLoading}
 					onClick={(e) => handleFollow(e, profile.username)}
 					{...unfollowProps}
 				>
@@ -34,8 +34,8 @@ const FollowButton = ({ profile, followProps, unfollowProps, stackProps }: Props
 			) : (
 				<Button
 					w="full"
-					colorScheme={"green"}
-					isLoading={isLoading}
+					colorPalette={"green"}
+					loading={isLoading}
 					onClick={(e) => handleFollow(e, profile.username)}
 					{...followProps}
 				>

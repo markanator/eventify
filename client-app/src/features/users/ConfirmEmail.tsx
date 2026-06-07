@@ -1,8 +1,9 @@
-import { EmailIcon } from "@chakra-ui/icons";
-import { Button, Container, Flex, Heading, Text, useToast, VStack } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import { EnvelopeIcon } from "@heroicons/react/24/outline";
+import { Button, Container, Flex, Heading, Text, VStack } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import agent from "~/async/fetcher/agent";
 import useQuery from "~/hooks/useQuery";
+import { toaster } from "../../components/ui/toaster";
 import LoginModal from "./LoginModal";
 
 const Status = {
@@ -12,7 +13,6 @@ const Status = {
 };
 
 const ConfirmEmail = () => {
-	const toast = useToast();
 	const email = useQuery().get("email") as string;
 	const token = useQuery().get("token") as string;
 	const [status, setStatus] = useState(Status.Verifying);
@@ -20,9 +20,8 @@ const ConfirmEmail = () => {
 	const handleConfirmEmailResend = async () => {
 		try {
 			await agent.Account.resendEmailConfirm(email);
-			toast({
-				position: "bottom-right",
-				status: "success",
+			toaster.create({
+				type: "success",
 				title: "Email sent.",
 				description: "Verification email resent - please check your email.",
 			});
@@ -49,14 +48,14 @@ const ConfirmEmail = () => {
 				return <p>Verifying...</p>;
 			case Status.Failed:
 				return (
-					<VStack spacing={12}>
+					<VStack gap={12}>
 						<Text>Verification failed. You can try resending the verify link to your email</Text>
 						<Button onClick={handleConfirmEmailResend}>Resend Email</Button>
 					</VStack>
 				);
 			case Status.Success:
 				return (
-					<VStack spacing={12}>
+					<VStack gap={12}>
 						<Text>Email has been verified - you can now login</Text>
 						<LoginModal />
 					</VStack>
@@ -66,8 +65,8 @@ const ConfirmEmail = () => {
 
 	return (
 		<Container mx="auto" maxW="5xl" mt={100}>
-			<VStack spacing={4}>
-				<EmailIcon w={100} h={100} />
+			<VStack gap={4}>
+				<EnvelopeIcon width={100} height={100} />
 				<Heading>Email verification</Heading>
 			</VStack>
 			<Flex flexDir="column" mt={12}>

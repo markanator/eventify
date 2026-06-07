@@ -1,18 +1,20 @@
-import { Flex, Heading, ListItem, UnorderedList, useColorModeValue } from "@chakra-ui/react";
+import { Flex, Heading, List } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
 import Calendar from "react-calendar";
 import { useStoreContext } from "~/stores/store";
+import { useColorModeValue } from "../../../components/ui/color-mode";
 
 const ActivityFilters = () => {
 	const {
 		activityStore: { predicate, setPredicate },
 	} = useStoreContext();
+	const bg = useColorModeValue("white", "gray.700");
 	return (
 		<>
 			<Flex
 				flexDir="column"
 				py={4}
-				bg={useColorModeValue("white", "gray.700")}
+				bg={bg}
 				boxShadow={"sm"}
 				mb={8}
 				mt={[0, 0, 16]}
@@ -36,7 +38,7 @@ const ActivityFilters = () => {
 				>
 					Filters
 				</Heading>
-				<UnorderedList listStyleType="none" m={0}>
+				<List.Root listStyleType="none" m={0}>
 					<ListItemWrapper
 						onClick={() => setPredicate("all", "true")}
 						active={predicate.has("all")}
@@ -55,10 +57,10 @@ const ActivityFilters = () => {
 					>
 						I&apos;m hosting
 					</ListItemWrapper>
-				</UnorderedList>
+				</List.Root>
 			</Flex>
 			<Calendar
-				onChange={(date: Date) => setPredicate("startDate", date as Date)}
+				onChange={(value) => setPredicate("startDate", value as Date)}
 				value={predicate.get("startDate") || new Date()}
 			/>
 		</>
@@ -76,7 +78,7 @@ const ListItemWrapper = ({
 }) => {
 	const bgc = useColorModeValue("gray.200", "gray.600");
 	return (
-		<ListItem
+		<List.Item
 			display="flex"
 			borderBottom="1px solid"
 			borderColor="gray.300"
@@ -91,7 +93,7 @@ const ListItemWrapper = ({
 			backgroundColor={active ? bgc : ""}
 		>
 			{children}
-		</ListItem>
+		</List.Item>
 	);
 };
 

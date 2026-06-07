@@ -1,14 +1,7 @@
-import {
-	FormControl,
-	VisuallyHidden,
-	FormLabel,
-	Input,
-	FormErrorMessage,
-	InputProps,
-	useColorModeValue,
-} from "@chakra-ui/react";
+import { Input, type InputProps, VisuallyHidden } from "@chakra-ui/react";
 import { useField } from "formik";
-import React from "react";
+import { Field } from "../ui/field";
+import { useColorModeValue } from "../ui/color-mode";
 
 type Props = InputProps & {
 	name: string;
@@ -18,14 +11,17 @@ type Props = InputProps & {
 const InputField = (props: Props) => {
 	const [field, meta] = useField(props.name as string);
 	const isInvalid = Boolean(meta.touched && meta.error);
+	const bg = useColorModeValue("gray.100", "gray.300");
 	return (
-		<FormControl id={props.name} isInvalid={isInvalid}>
-			<VisuallyHidden>
-				<FormLabel>{props.name}</FormLabel>
-			</VisuallyHidden>
+		<Field
+			id={props.name}
+			invalid={isInvalid}
+			errorText={isInvalid ? meta.error : undefined}
+			label={<VisuallyHidden>{props.name}</VisuallyHidden>}
+		>
 			<Input
 				placeholder={props.name}
-				bg={useColorModeValue("gray.100", "gray.300")}
+				bg={bg}
 				border={0}
 				color={"gray.700"}
 				_placeholder={{
@@ -35,8 +31,7 @@ const InputField = (props: Props) => {
 				{...field}
 				{...props}
 			/>
-			{isInvalid && <FormErrorMessage>{meta.error}</FormErrorMessage>}
-		</FormControl>
+		</Field>
 	);
 };
 

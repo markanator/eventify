@@ -1,17 +1,15 @@
-import { Box, Button, Container, Flex, Heading, Text, useToast } from "@chakra-ui/react";
-import React from "react";
+import { Box, Button, Container, Flex, Heading, Text } from "@chakra-ui/react";
 import agent from "~/async/fetcher/agent";
 import useQuery from "~/hooks/useQuery";
+import { toaster } from "../../components/ui/toaster";
 
 const RegisterSuccess = () => {
-	const toast = useToast();
 	const email = useQuery().get("email") as string;
 	const handleConfirmEmailResend = async () => {
 		try {
 			await agent.Account.resendEmailConfirm(email);
-			toast({
-				position: "bottom-right",
-				status: "success",
+			toaster.create({
+				type: "success",
 				title: "Email sent.",
 				description: "Verification email resent - please check your email.",
 			});
@@ -22,7 +20,7 @@ const RegisterSuccess = () => {
 	return (
 		<Box>
 			<Container mx="auto" my={20} maxW="5xl">
-				<Flex flexDir="column" experimental_spaceY={4}>
+				<Flex flexDir="column" gap={4}>
 					<Heading>Successfully Registered!</Heading>
 					<Text>Please Check your email (including junk folders) for the verification email.</Text>
 					{email && (

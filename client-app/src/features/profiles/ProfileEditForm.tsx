@@ -41,10 +41,10 @@ const ProfileEditForm = ({ setEditMode }: Props) => {
 		>
 			{({ isSubmitting, isValid, dirty, handleSubmit }) => (
 				<Form style={{ width: "100%" }} onSubmit={handleSubmit}>
-					<Flex mt={8} flexDir="column" w="full" experimental_spaceY={6}>
+					<Flex mt={8} flexDir="column" w="full" gap={6}>
 						<InputField placeholder="Display Name" name="displayName" />
 						<InputTextArea resize="vertical" rows={3} placeholder="Add your bio" name="bio" />
-						<Button type="submit" isLoading={isSubmitting} disabled={!isValid || !dirty}>
+						<Button type="submit" loading={isSubmitting} disabled={!isValid || !dirty}>
 							Update profile
 						</Button>
 					</Flex>

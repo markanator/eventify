@@ -1,18 +1,19 @@
-import { ChevronDownIcon } from "@chakra-ui/icons";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import {
-	Collapse,
+	Collapsible,
 	Flex,
 	Icon,
 	Link,
 	Stack,
 	Text,
-	useColorModeValue,
 	useDisclosure,
 } from "@chakra-ui/react";
+import { useColorModeValue } from "./ui/color-mode";
 
 export const MobileNav = () => {
+	const bg = useColorModeValue("white", "gray.800");
 	return (
-		<Stack bg={useColorModeValue("white", "gray.800")} p={4} display={{ md: "none" }}>
+		<Stack bg={bg} p={4} display={{ md: "none" }}>
 			{NAV_ITEMS.map((navItem) => (
 				<MobileNavItem key={navItem.label} {...navItem} />
 			))}
@@ -21,51 +22,57 @@ export const MobileNav = () => {
 };
 
 const MobileNavItem = ({ label, children, href }: NavItem) => {
-	const { isOpen, onToggle } = useDisclosure();
+	const { open, onToggle } = useDisclosure();
+	const textColor = useColorModeValue("gray.600", "gray.200");
+	const borderColor = useColorModeValue("gray.200", "gray.700");
 
 	return (
-		<Stack spacing={4} onClick={children && onToggle}>
+		<Stack gap={4} onClick={children && onToggle}>
 			<Flex
+				asChild
 				py={2}
-				as={Link}
-				href={href ?? "#"}
 				justify={"space-between"}
 				align={"center"}
 				_hover={{
 					textDecoration: "none",
 				}}
 			>
-				<Text fontWeight={600} color={useColorModeValue("gray.600", "gray.200")}>
-					{label}
-				</Text>
-				{children && (
-					<Icon
-						as={ChevronDownIcon}
-						transition={"all .25s ease-in-out"}
-						transform={isOpen ? "rotate(180deg)" : ""}
-						w={6}
-						h={6}
-					/>
-				)}
+				<a href={href ?? "#"}>
+					<Text fontWeight={600} color={textColor}>
+						{label}
+					</Text>
+					{children && (
+						<Icon
+							transition={"all .25s ease-in-out"}
+							transform={open ? "rotate(180deg)" : ""}
+							w={6}
+							h={6}
+						>
+							<ChevronDownIcon />
+						</Icon>
+					)}
+				</a>
 			</Flex>
 
-			<Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
-				<Stack
-					mt={2}
-					pl={4}
-					borderLeft={1}
-					borderStyle={"solid"}
-					borderColor={useColorModeValue("gray.200", "gray.700")}
-					align={"start"}
-				>
-					{children &&
-						children.map((child) => (
-							<Link key={child.label} py={2} href={child.href}>
-								{child.label}
-							</Link>
-						))}
-				</Stack>
-			</Collapse>
+			<Collapsible.Root open={open} style={{ marginTop: "0!important" }}>
+				<Collapsible.Content>
+					<Stack
+						mt={2}
+						pl={4}
+						borderLeft={1}
+						borderStyle={"solid"}
+						borderColor={borderColor}
+						align={"start"}
+					>
+						{children &&
+							children.map((child) => (
+								<Link key={child.label} py={2} href={child.href}>
+									{child.label}
+								</Link>
+							))}
+					</Stack>
+				</Collapsible.Content>
+			</Collapsible.Root>
 		</Stack>
 	);
 };

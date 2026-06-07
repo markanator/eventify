@@ -1,5 +1,5 @@
 import { makeAutoObservable, reaction, runInAction } from "mobx";
-import agent from "src/async/fetcher/agent";
+import agent from "~/async/fetcher/agent";
 import type { Activity, PaginationHeader, User } from "~/types";
 import dayjs from "dayjs";
 import { store } from "./store";

@@ -1,4 +1,11 @@
-import { Box, Button, Heading, Text, useColorModeValue, VStack } from "@chakra-ui/react";
+import {
+	Box,
+	Button,
+	Heading,
+	Text,
+	VStack,
+} from "@chakra-ui/react";
+import { useColorModeValue } from "../../components/ui/color-mode";
 import { ErrorMessage, Form, Formik, FormikHelpers, FormikProps } from "formik";
 import { observer } from "mobx-react-lite";
 import InputField from "~/components/forms/Input";
@@ -41,12 +48,12 @@ const LoginForm = () => {
 			>
 				{({ handleSubmit, isSubmitting, dirty, isValid, errors }: FormikProps<LoginFormVals>) => (
 					<Form onSubmit={handleSubmit}>
-						<VStack spacing={6}>
+						<VStack gap={6}>
 							<Heading>Login to Reactivities</Heading>
 							<InputField name="email" type="email" />
 							<InputField name="password" type="password" />
 							{errors?.error && <Text>{errors?.error}</Text>}
-							<Button type="submit" isLoading={isSubmitting} disabled={!dirty || !isValid}>
+							<Button type="submit" loading={isSubmitting} disabled={!dirty || !isValid}>
 								Login
 							</Button>
 						</VStack>

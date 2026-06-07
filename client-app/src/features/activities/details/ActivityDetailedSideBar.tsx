@@ -1,6 +1,12 @@
-import { Flex, Heading, Text, UnorderedList, useColorModeValue } from "@chakra-ui/react";
+import {
+	Flex,
+	Heading,
+	List,
+	Text,
+} from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
 import { Activity } from "~/types";
+import { useColorModeValue } from "../../../components/ui/color-mode";
 import { AttendeeListItem } from "./Sidebar.helper";
 
 type Props = {
@@ -9,8 +15,9 @@ type Props = {
 
 const ActivityDetailedSideBar = ({ activity }: Props) => {
 	const { attendees, hostUsername } = activity;
+	const bg = useColorModeValue("white", "gray.700");
 	return (
-		<Flex flexDir="column" p={4} bg={useColorModeValue("white", "gray.700")} boxShadow={"sm"}>
+		<Flex flexDir="column" p={4} bg={bg} boxShadow={"sm"}>
 			<Flex mb={8} alignItems="center">
 				<Heading
 					as="h4"
@@ -33,7 +40,7 @@ const ActivityDetailedSideBar = ({ activity }: Props) => {
 					({attendees?.length || 0}) {attendees?.length === 1 ? "Person" : "People"} going
 				</Text>
 			</Flex>
-			<UnorderedList listStyleType="none">
+			<List.Root listStyleType="none">
 				{attendees?.map((attendee) => (
 					<AttendeeListItem
 						key={attendee.username}
@@ -41,7 +48,7 @@ const ActivityDetailedSideBar = ({ activity }: Props) => {
 						hostUsername={hostUsername}
 					/>
 				))}
-			</UnorderedList>
+			</List.Root>
 		</Flex>
 	);
 };

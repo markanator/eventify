@@ -1,5 +1,4 @@
 import {
-	Avatar,
 	Badge,
 	Box,
 	Button,
@@ -8,8 +7,9 @@ import {
 	HStack,
 	Image,
 	Text,
-	useColorModeValue,
 } from "@chakra-ui/react";
+import { Avatar } from "../../../components/ui/avatar";
+import { useColorModeValue } from "../../../components/ui/color-mode";
 import { MapPinIcon } from "@heroicons/react/24/solid";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
@@ -43,11 +43,11 @@ const ActivityListItem = ({ activity }: Props) => {
 							Event
 						</Text>
 						<HStack pt={1}>
-							{activity.isCancelled && <Badge colorScheme="red">Activity Cancelled</Badge>}
-							{activity.isHost && <Badge colorScheme="purple">Hosting</Badge>}
-							{activity.isGoing && !activity.isHost && <Badge colorScheme="green">Attending</Badge>}
+							{activity.isCancelled && <Badge colorPalette="red">Activity Cancelled</Badge>}
+							{activity.isHost && <Badge colorPalette="purple">Hosting</Badge>}
+							{activity.isGoing && !activity.isHost && <Badge colorPalette="green">Attending</Badge>}
 							{!activity.isGoing && !activity.isHost && (
-								<Badge colorScheme="yellow">Not Attending</Badge>
+								<Badge colorPalette="yellow">Not Attending</Badge>
 							)}
 						</HStack>
 					</Flex>
@@ -63,8 +63,7 @@ const ActivityListItem = ({ activity }: Props) => {
 					<CalendarDate date={date!} />
 					<Flex flexDir="column" w="full">
 						<Heading
-							as={Link}
-							to={`${id}`}
+							asChild
 							_hover={{
 								textDecoration: "underline",
 							}}
@@ -73,7 +72,7 @@ const ActivityListItem = ({ activity }: Props) => {
 							mb={1}
 							textTransform="capitalize"
 						>
-							{title}
+							<Link to={`${id}`}>{title}</Link>
 						</Heading>
 						<Flex flexDir="row" alignItems="center">
 							<MapPinIcon width={16} height={16} />
@@ -83,8 +82,8 @@ const ActivityListItem = ({ activity }: Props) => {
 						</Flex>
 					</Flex>
 				</Flex>
-				<Button colorScheme="teal" as={Link} to={`${id}`}>
-					View
+				<Button colorPalette="teal" asChild>
+					<Link to={`${id}`}>View</Link>
 				</Button>
 			</Flex>
 			{attendees && (

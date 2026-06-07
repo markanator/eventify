@@ -1,4 +1,10 @@
-import { ListItem, Avatar, Flex, Badge, Text } from "@chakra-ui/react";
+import {
+	List,
+	Flex,
+	Badge,
+	Text,
+} from "@chakra-ui/react";
+import { Avatar } from "../../../components/ui/avatar";
 import { observer } from "mobx-react-lite";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -6,7 +12,7 @@ import { Profile } from "~/types";
 
 export const AttendeeListItem = observer(
 	({ attendee, hostUsername }: { attendee: Profile; hostUsername?: string }) => (
-		<ListItem
+		<List.Item
 			key={attendee.username}
 			display="flex"
 			justifyContent="center"
@@ -30,17 +36,17 @@ export const AttendeeListItem = observer(
 						</Text>
 					</Link>
 					{hostUsername && hostUsername === attendee.username && (
-						<Badge variant="subtle" colorScheme="green">
+						<Badge variant="subtle" colorPalette="green">
 							Host
 						</Badge>
 					)}
 				</Flex>
 				{attendee.following && (
-					<Text mt={-1} fontSize="sm" fontWeight={500} letterSpacing="wide" textColor="orange">
+					<Text mt={-1} fontSize="sm" fontWeight={500} letterSpacing="wide" color="orange">
 						Following
 					</Text>
 				)}
 			</Flex>
-		</ListItem>
+		</List.Item>
 	),
 );

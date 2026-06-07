@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, Flex, HStack, Text, VStack } from "@chakra-ui/react";
+import { Box, Button, Group, Flex, HStack, Text, VStack } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import PhotoWidgetCropper from "./PhotoWidgetCropper";
@@ -30,7 +30,7 @@ const PhotoUploadWidget = ({ handlePhotoUpload, isUploading }: Props) => {
 	}, [files]);
 
 	return (
-		<VStack spacing={6} w="full">
+		<VStack gap={6} w="full">
 			<Flex justifyContent="space-between" w="full" px={6}>
 				<Text fontSize="xl">Step 1: Add Photo</Text>
 				<Text fontSize="xl">Step 2: Resize Image</Text>
@@ -49,14 +49,14 @@ const PhotoUploadWidget = ({ handlePhotoUpload, isUploading }: Props) => {
 					{files && files.length > 0 && (
 						<Flex flexDir="column" alignItems="center" w="full">
 							<Box className="img-preview" minH={200} w="full" overflow="hidden" />
-							<ButtonGroup size="lg" isAttached variant="solid" mt={6}>
-								<Button colorScheme="blue" isLoading={isUploading} onClick={onCrop}>
+							<Group attached mt={6}>
+								<Button size="lg" variant="solid" colorPalette="blue" loading={isUploading} onClick={onCrop}>
 									Save
 								</Button>
-								<Button colorScheme="red" isDisabled={isUploading} onClick={() => setFiles([])}>
+								<Button size="lg" variant="solid" colorPalette="red" disabled={isUploading} onClick={() => setFiles([])}>
 									Close
 								</Button>
-							</ButtonGroup>
+							</Group>
 						</Flex>
 					)}
 				</Flex>

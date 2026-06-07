@@ -1,4 +1,8 @@
-import { Box, Flex, useColorModeValue } from "@chakra-ui/react";
+import {
+	Box,
+	Flex,
+} from "@chakra-ui/react";
+import { useColorModeValue } from "./ui/color-mode";
 import dayjs from "dayjs";
 import { useMemo } from "react";
 
@@ -18,7 +22,7 @@ const CalendarDate = ({ date }: Props) => {
 		<Flex mr={3} flexDir="column" textAlign="center" borderRadius="md" w="3.125rem">
 			<Box
 				bgColor="red.500"
-				textColor="white"
+				color="white"
 				borderTopRadius=".375rem"
 				p={1}
 				fontWeight="semibold"
@@ -28,7 +32,7 @@ const CalendarDate = ({ date }: Props) => {
 			</Box>
 			<Box
 				borderTopColor="initial"
-				textColor={useColorModeValue("gray.700", "gray.100")}
+				color={useColorModeValue("gray.700", "gray.100")}
 				fontSize="2xl"
 				p={".15rem"}
 				border=".125rem solid var(--chakra-colors-red-500)"

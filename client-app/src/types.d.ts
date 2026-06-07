@@ -1,4 +1,4 @@
-import { UseToastOptions } from "@chakra-ui/react";
+import type { CreateToasterReturn } from "@chakra-ui/react";
 
 export interface PaginationHeader {
 	currentPage: number;
@@ -9,7 +9,7 @@ export interface PaginationHeader {
 
 declare global {
 	interface Window {
-		toast: (options?: UseToastOptions | undefined) => unknown;
+		toast: CreateToasterReturn["create"];
 		navigate: (url: string) => void;
 		FB: any;
 	}

@@ -12,7 +12,7 @@ const ProfileFollowings = () => {
 	}, [loadFollowings]);
 
 	return (
-		<VStack spacing={6} alignItems="start" w="full">
+		<VStack gap={6} alignItems="start" w="full">
 			<Flex justifyContent="space-between" w="full">
 				<Heading fontSize={"2xl"} textTransform="capitalize">
 					{activeTab === 3
