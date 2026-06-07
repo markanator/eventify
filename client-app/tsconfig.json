@@ -11,7 +11,7 @@
     "alwaysStrict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
@@ -22,7 +22,6 @@
       "./src/types.d.ts",
       "./src/env.d.ts"
     ],
-    "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"]
     }
