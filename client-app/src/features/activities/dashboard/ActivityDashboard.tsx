@@ -40,7 +40,7 @@ const ActivityDashboard = () => {
 				columns={{
 					md: 3,
 				}}
-				spacing={{
+				gap={{
 					md: 6,
 				}}
 				pt={12}

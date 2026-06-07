@@ -1,4 +1,10 @@
-import { Box, Button, Heading, useColorModeValue, VStack } from "@chakra-ui/react";
+import {
+	Box,
+	Button,
+	Heading,
+	VStack,
+} from "@chakra-ui/react";
+import { useColorModeValue } from "../../components/ui/color-mode";
 import { ErrorMessage, Form, Formik, FormikHelpers, FormikProps } from "formik";
 import { observer } from "mobx-react-lite";
 import * as yup from "yup";
@@ -38,7 +44,7 @@ const RegisterForm = () => {
 				{/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
 				{({ handleSubmit, isSubmitting, dirty, isValid, errors }: FormikProps<any>) => (
 					<Form onSubmit={handleSubmit}>
-						<VStack spacing={6}>
+						<VStack gap={6}>
 							<Heading>Register</Heading>
 							<InputField name="displayName" type="text" />
 							<InputField name="username" type="text" />
@@ -49,9 +55,9 @@ const RegisterForm = () => {
 								render={() => <ValidationErrors errors={errors.error} />}
 							/>
 							<Button
-								colorScheme="green"
+								colorPalette="green"
 								type="submit"
-								isLoading={isSubmitting}
+								loading={isSubmitting}
 								disabled={!isValid || !dirty || isSubmitting}
 							>
 								Register

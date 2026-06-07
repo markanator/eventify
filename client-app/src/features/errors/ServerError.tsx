@@ -13,13 +13,15 @@ const ServerError = () => {
 				{commonStore.error?.message}
 			</Heading>
 			{commonStore.error?.details && (
-				<Flex flexDir="column" as={Link} to="/activities">
-					<Heading as="h6" fontSize="2xl">
-						Stack Trace
-					</Heading>
-					<Flex as="code" mt={8}>
-						{commonStore.error?.details}
-					</Flex>
+				<Flex asChild flexDir="column">
+					<Link to="/activities">
+						<Heading as="h6" fontSize="2xl">
+							Stack Trace
+						</Heading>
+						<Flex as="code" mt={8}>
+							{commonStore.error?.details}
+						</Flex>
+					</Link>
 				</Flex>
 			)}
 		</Container>

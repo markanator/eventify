@@ -1,5 +1,4 @@
 import {
-	Avatar,
 	Box,
 	Button,
 	Flex,
@@ -7,13 +6,15 @@ import {
 	HStack,
 	Link,
 	Text,
-	useColorModeValue,
 } from "@chakra-ui/react";
+import { Avatar } from "../../../components/ui/avatar";
+import { useColorModeValue } from "../../../components/ui/color-mode";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Form, Formik, FormikProps } from "formik";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
+import { Link as RouterLink } from "react-router-dom";
 import * as yup from "yup";
 import InputTextArea from "~/components/forms/InputTextArea";
 import { useStoreContext } from "~/stores/store";
@@ -69,7 +70,7 @@ const ActivityDetailedChat = ({ activityId }: Props) => {
 				{!userStore.isLoggedIn ? (
 					<Text mb={8}>
 						You must be{" "}
-						<Link textColor="blue.500" fontWeight={500}>
+						<Link color="blue.500" fontWeight={500}>
 							logged in
 						</Link>{" "}
 						to post a comment.
@@ -102,9 +103,9 @@ const ActivityDetailedChat = ({ activityId }: Props) => {
 										/>
 										<Button
 											type="submit"
-											isDisabled={!dirty || !isValid}
-											isLoading={isSubmitting}
-											colorScheme="teal"
+											disabled={!dirty || !isValid}
+											loading={isSubmitting}
+											colorPalette="teal"
 											size="md"
 										>
 											Add Reply
@@ -124,10 +125,10 @@ const ActivityDetailedChat = ({ activityId }: Props) => {
 								<Avatar src={comm?.image ?? "/assets/user.png"} name={comm?.displayName} />
 								<Flex flexDir="column" ml={4}>
 									<Flex alignItems="center">
-										<Text as={Link} to={`/profiles/${comm.username}`} fontWeight={700}>
-											{comm?.displayName}
+										<Text asChild fontWeight={700}>
+											<RouterLink to={`/profiles/${comm.username}`}>{comm?.displayName}</RouterLink>
 										</Text>
-										<Text ml={2} fontSize="xs" textColor="gray.500">
+										<Text ml={2} fontSize="xs" color="gray.500">
 											{dayjs(comm.createdAt).fromNow()}
 										</Text>
 									</Flex>

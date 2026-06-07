@@ -6,9 +6,9 @@ import {
 	Heading,
 	IconButton,
 	Image,
-	useColorModeValue,
 	VStack,
 } from "@chakra-ui/react";
+import { useColorModeValue } from "../../components/ui/color-mode";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
@@ -62,7 +62,7 @@ const ProfilePhotos = ({ profile }: Props) => {
 							<Box key={photo.id} flex="0 0 250px" pos="relative" bgColor={photoCardBgColor} p={4}>
 								<Image src={photo?.url} w={350} />
 								{photo?.isMain && (
-									<Badge pos="absolute" top={4} left={4} variant="solid" colorScheme="blue">
+									<Badge pos="absolute" top={4} left={4} variant="solid" colorPalette="blue">
 										Main
 									</Badge>
 								)}
@@ -70,24 +70,25 @@ const ProfilePhotos = ({ profile }: Props) => {
 									<Flex justifyContent="space-between" mt={4}>
 										<Button
 											size="sm"
-											colorScheme="blue"
+											colorPalette="blue"
 											name={"main" + photo.id}
 											onClick={(e) => handleSetMainPhoto(photo, e)}
-											isLoading={target === "main" + photo.id && isLoading}
-											isDisabled={photo.isMain}
+											loading={target === "main" + photo.id && isLoading}
+											disabled={photo.isMain}
 										>
 											Set Main
 										</Button>
 										<IconButton
 											aria-label={`delete ${photo.id}`}
-											icon={<TrashIcon width={16} />}
 											size="sm"
-											colorScheme="red"
+											colorPalette="red"
 											name={photo.id}
 											onClick={(e) => handleDeletePhoto(photo, e)}
-											isLoading={target === photo.id && isLoading}
-											isDisabled={photo.isMain}
-										/>
+											loading={target === photo.id && isLoading}
+											disabled={photo.isMain}
+										>
+											<TrashIcon width={16} />
+										</IconButton>
 									</Flex>
 								)}
 							</Box>

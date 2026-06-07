@@ -1,46 +1,49 @@
-import { CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { Bars3Icon, MoonIcon, SunIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import {
-	Avatar,
 	Box,
 	Button,
-	Collapse,
+	Collapsible,
 	Flex,
 	IconButton,
 	Menu,
-	MenuButton,
-	MenuItem,
-	MenuList,
+	Portal,
 	Stack,
 	Text,
 	useBreakpointValue,
-	useColorMode,
-	useColorModeValue,
 	useDisclosure,
 } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
 import { Link, NavLink } from "react-router-dom";
 import { useStoreContext } from "~/stores/store";
+import { Avatar } from "./ui/avatar";
+import { useColorMode, useColorModeValue } from "./ui/color-mode";
 import DesktopNav from "./DesktopNav";
 import { MobileNav } from "./MobileNav";
 
 const Navbar = () => {
 	const { colorMode, toggleColorMode } = useColorMode();
-	const { isOpen, onToggle } = useDisclosure();
+	const { open, onToggle } = useDisclosure();
 	const {
 		userStore: { user, logout },
 	} = useStoreContext();
 
+	const bg = useColorModeValue("white", "gray.800");
+	const color = useColorModeValue("gray.600", "white");
+	const borderColor = useColorModeValue("gray.200", "gray.900");
+	const headingColor = useColorModeValue("gray.800", "white");
+	const textAlign = useBreakpointValue({ base: "center", md: "left" } as const);
+
 	return (
 		<Box>
 			<Flex
-				bg={useColorModeValue("white", "gray.800")}
-				color={useColorModeValue("gray.600", "white")}
+				bg={bg}
+				color={color}
 				minH={"60px"}
 				py={{ base: 2 }}
 				px={{ base: 8 }}
 				borderBottom={1}
 				borderStyle={"solid"}
-				borderColor={useColorModeValue("gray.200", "gray.900")}
+				borderColor={borderColor}
 				align={"center"}
 			>
 				<Flex
@@ -50,20 +53,20 @@ const Navbar = () => {
 				>
 					<IconButton
 						onClick={onToggle}
-						icon={isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />}
 						variant={"ghost"}
 						aria-label={"Toggle Navigation"}
-					/>
+					>
+						{open ? <XMarkIcon width={12} height={12} /> : <Bars3Icon width={20} height={20} />}
+					</IconButton>
 				</Flex>
 				<Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }} alignItems="center">
 					<Text
-						as={NavLink}
-						to="/"
-						textAlign={useBreakpointValue({ base: "center", md: "left" })}
+						asChild
+						textAlign={textAlign}
 						fontFamily={"heading"}
-						color={useColorModeValue("gray.800", "white")}
+						color={headingColor}
 					>
-						Reactivities
+						<NavLink to="/">Reactivities</NavLink>
 					</Text>
 
 					<Flex display={{ base: "none", md: "flex" }} alignItems="center" ml={10}>
@@ -76,15 +79,15 @@ const Navbar = () => {
 					justify={"flex-end"}
 					alignItems="center"
 					direction={"row"}
-					spacing={6}
+					gap={6}
 				>
 					<Button onClick={toggleColorMode} variant="ghost" size="sm">
-						{colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+						{colorMode === "light" ? <MoonIcon width={20} height={20} /> : <SunIcon width={20} height={20} />}
 					</Button>
 					{!user ? (
 						<>
-							<Button as={Link} fontSize={"sm"} fontWeight={400} variant={"link"} to={"/login"}>
-								Sign In
+							<Button asChild fontSize={"sm"} fontWeight={400} variant={"plain"}>
+								<Link to={"/login"}>Sign In</Link>
 							</Button>
 							<Button
 								display={{ base: "none", md: "inline-flex" }}
@@ -100,26 +103,34 @@ const Navbar = () => {
 							</Button>
 						</>
 					) : (
-						<>
-							<Menu>
-								<MenuButton>
+						<Menu.Root>
+							<Menu.Trigger asChild>
+								<Box as="button" cursor="pointer">
 									<Avatar size="sm" name={user?.displayName} src={user?.image} />
-								</MenuButton>
-								<MenuList>
-									<MenuItem as={Link} to={`/profiles/${user?.username}`}>
-										Profile
-									</MenuItem>
-									<MenuItem onClick={logout}>Logout</MenuItem>
-								</MenuList>
-							</Menu>
-						</>
+								</Box>
+							</Menu.Trigger>
+							<Portal>
+								<Menu.Positioner>
+									<Menu.Content>
+										<Menu.Item value="profile" asChild>
+											<Link to={`/profiles/${user?.username}`}>Profile</Link>
+										</Menu.Item>
+										<Menu.Item value="logout" onClick={logout}>
+											Logout
+										</Menu.Item>
+									</Menu.Content>
+								</Menu.Positioner>
+							</Portal>
+						</Menu.Root>
 					)}
 				</Stack>
 			</Flex>
 
-			<Collapse in={isOpen} animateOpacity>
-				<MobileNav />
-			</Collapse>
+			<Collapsible.Root open={open}>
+				<Collapsible.Content>
+					<MobileNav />
+				</Collapsible.Content>
+			</Collapsible.Root>
 		</Box>
 	);
 };

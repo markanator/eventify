@@ -1,16 +1,13 @@
 import {
-	FormControl,
+	NativeSelect,
+	type NativeSelectFieldProps,
 	VisuallyHidden,
-	FormLabel,
-	Select,
-	FormErrorMessage,
-	SelectProps,
-	useColorModeValue,
 } from "@chakra-ui/react";
 import { useField } from "formik";
-import React from "react";
+import { Field } from "../ui/field";
+import { useColorModeValue } from "../ui/color-mode";
 
-type Props = SelectProps & {
+type Props = NativeSelectFieldProps & {
 	name: string;
 	options: { label: string; value: string | number }[];
 	[k: string]: unknown;
@@ -19,28 +16,32 @@ type Props = SelectProps & {
 const InputSelect = ({ name, options, ...rest }: Props) => {
 	const [field, meta] = useField(name);
 	const isInvalid = Boolean(meta.touched && meta.error);
+	const bg = useColorModeValue("gray.100", "gray.300");
 
 	return (
-		<FormControl id={name} isInvalid={isInvalid}>
-			<VisuallyHidden>
-				<FormLabel>{name}</FormLabel>
-			</VisuallyHidden>
-			<Select
-				bgColor={useColorModeValue("gray.100", "gray.300")}
-				color={"black"}
-				placeholder={`Select a ${name}`}
-				{...rest}
-				{...field}
-			>
-				{options?.map(({ label, value }) => (
-					<option key={label} value={value}>
-						{label}
-					</option>
-				))}
-			</Select>
-
-			{isInvalid && <FormErrorMessage>{meta.error}</FormErrorMessage>}
-		</FormControl>
+		<Field
+			id={name}
+			invalid={isInvalid}
+			errorText={isInvalid ? meta.error : undefined}
+			label={<VisuallyHidden>{name}</VisuallyHidden>}
+		>
+			<NativeSelect.Root>
+				<NativeSelect.Field
+					bgColor={bg}
+					color={"black"}
+					placeholder={`Select a ${name}`}
+					{...rest}
+					{...field}
+				>
+					{options?.map(({ label, value }) => (
+						<option key={label} value={value}>
+							{label}
+						</option>
+					))}
+				</NativeSelect.Field>
+				<NativeSelect.Indicator />
+			</NativeSelect.Root>
+		</Field>
 	);
 };
 

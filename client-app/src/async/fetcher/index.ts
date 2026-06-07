@@ -1,4 +1,8 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, {
+	AxiosError,
+	AxiosResponse,
+	InternalAxiosRequestConfig,
+} from "axios";
 import { PaginationResults } from "~/lib/PaginationResults";
 import { store } from "~/stores/store";
 import { sleep } from "../../utils/sleeper";
@@ -7,7 +11,7 @@ const instance = axios.create({
 	baseURL: import.meta.env.VITE_API_URL,
 });
 
-instance.interceptors.request.use((config: AxiosRequestConfig<unknown>) => {
+instance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
 	const token = store.commonStore.token;
 	if (token) {
 		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -40,9 +44,8 @@ instance.interceptors.response.use(
 			case 400:
 				if (typeof data === "string") {
 					window?.toast({
-						status: "error",
+						type: "error",
 						title: "Bad request, try again later.",
-						position: "bottom-right",
 					});
 				}
 				// eslint-disable-next-line no-prototype-builtins
@@ -66,9 +69,8 @@ instance.interceptors.response.use(
 				) {
 					store.userStore.logout();
 					window?.toast({
-						status: "error",
+						type: "error",
 						title: "Session expired - please login",
-						position: "bottom-right",
 					});
 				}
 				break;

@@ -1,14 +1,14 @@
 import {
-	Avatar,
-	Divider,
+	Separator,
 	Flex,
 	GridItem,
 	Heading,
 	HStack,
 	Text,
-	useColorModeValue,
 	VStack,
 } from "@chakra-ui/react";
+import { Avatar } from "../../components/ui/avatar";
+import { useColorModeValue } from "../../components/ui/color-mode";
 import { observer } from "mobx-react-lite";
 import { Profile } from "~/types";
 import FollowButton from "./FollowButton";
@@ -37,11 +37,11 @@ const ProfileHeader = ({ profile }: Props) => {
 					<Heading ml={6}>{profile.displayName}</Heading>
 				</Flex>
 				<VStack>
-					<HStack mb={2} spacing={8}>
+					<HStack mb={2} gap={8}>
 						<StatBlock label="Followers" value={profile.followersCount} />
 						<StatBlock label="Following" value={profile.followingCount} />
 					</HStack>
-					<Divider />
+					<Separator />
 					{/* FOLLOW BUTTONS */}
 					<FollowButton profile={profile} />
 				</VStack>

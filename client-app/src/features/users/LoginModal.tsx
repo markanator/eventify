@@ -1,30 +1,37 @@
 import {
 	Button,
-	Modal,
-	ModalBody,
-	ModalCloseButton,
-	ModalContent,
-	ModalOverlay,
+	CloseButton,
+	Dialog,
+	Portal,
 	useDisclosure,
 } from "@chakra-ui/react";
 import LoginForm from "./LoginForm";
 
 const LoginModal = () => {
-	const { isOpen: isLoginOpen, onOpen: onLoginOpen, onClose: onLoginClose } = useDisclosure();
+	const { open, onOpen, onClose } = useDisclosure();
 	return (
 		<>
-			<Button onClick={onLoginOpen} variant="link">
+			<Button onClick={onOpen} variant="plain">
 				Login
 			</Button>
-			<Modal isOpen={isLoginOpen} onClose={onLoginClose}>
-				<ModalOverlay />
-				<ModalContent>
-					<ModalCloseButton />
-					<ModalBody>
-						<LoginForm />
-					</ModalBody>
-				</ModalContent>
-			</Modal>
+			<Dialog.Root
+				open={open}
+				onOpenChange={(e) => (e.open ? onOpen() : onClose())}
+			>
+				<Portal>
+					<Dialog.Backdrop />
+					<Dialog.Positioner>
+						<Dialog.Content>
+							<Dialog.CloseTrigger asChild>
+								<CloseButton size="sm" />
+							</Dialog.CloseTrigger>
+							<Dialog.Body>
+								<LoginForm />
+							</Dialog.Body>
+						</Dialog.Content>
+					</Dialog.Positioner>
+				</Portal>
+			</Dialog.Root>
 		</>
 	);
 };

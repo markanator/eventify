@@ -1,4 +1,4 @@
-import { Button, Divider, Flex, Heading, Stack } from "@chakra-ui/react";
+import { Button, Separator, Flex, Heading, Stack } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 import { useStoreContext } from "~/stores/store";
@@ -19,11 +19,11 @@ const HomePage = () => {
 					<Link to="/activities">Go to activities!</Link>
 				</>
 			) : (
-				<Stack spacing={6}>
+				<Stack gap={6}>
 					<LoginModal />
 					<RegisterModal />
-					<Divider />
-					<Button colorScheme="facebook" onClick={facebookLogin} isLoading={isLoadingFacebook}>
+					<Separator />
+					<Button colorPalette="facebook" onClick={facebookLogin} loading={isLoadingFacebook}>
 						Login with Facebook
 					</Button>
 				</Stack>

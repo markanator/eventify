@@ -1,24 +1,19 @@
 import {
-	Tabs,
-	TabList,
-	Tab,
-	TabPanels,
-	TabPanel,
 	Box,
-	Image,
-	VStack,
-	Heading,
 	Flex,
-	ListItem,
+	Heading,
+	Image,
 	List,
-	useColorModeValue,
+	Tabs,
+	VStack,
 } from "@chakra-ui/react";
 import dayjs from "dayjs";
 import { observer } from "mobx-react-lite";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useStoreContext } from "~/stores/store";
-import { UserActivity } from "~/types";
+import type { UserActivity } from "~/types";
+import { useColorModeValue } from "../../components/ui/color-mode";
 
 const panes = ["future", "past", "hosting"];
 
@@ -39,18 +34,32 @@ const ProfileActivities = () => {
 	}, [loadUserActivities, profile]);
 
 	return (
-		<Tabs index={tabIndex} onChange={handleTabsChange} isLazy>
-			<TabList>
-				<Tab isDisabled={isLoadingActivities}>Future Events</Tab>
-				<Tab isDisabled={isLoadingActivities}>Past Events</Tab>
-				<Tab isDisabled={isLoadingActivities}>Hosting</Tab>
-			</TabList>
-			<TabPanels>
-				<Panel key="FutureEvents" userActivities={userActivities} />
-				<Panel key="PastEvents" userActivities={userActivities} />
-				<Panel key="HostingEvents" userActivities={userActivities} />
-			</TabPanels>
-		</Tabs>
+		<Tabs.Root
+			value={String(tabIndex)}
+			onValueChange={(e) => handleTabsChange(Number(e.value))}
+			lazyMount
+		>
+			<Tabs.List>
+				<Tabs.Trigger value="0" disabled={isLoadingActivities}>
+					Future Events
+				</Tabs.Trigger>
+				<Tabs.Trigger value="1" disabled={isLoadingActivities}>
+					Past Events
+				</Tabs.Trigger>
+				<Tabs.Trigger value="2" disabled={isLoadingActivities}>
+					Hosting
+				</Tabs.Trigger>
+			</Tabs.List>
+			<Tabs.Content value="0">
+				<Panel userActivities={userActivities} />
+			</Tabs.Content>
+			<Tabs.Content value="1">
+				<Panel userActivities={userActivities} />
+			</Tabs.Content>
+			<Tabs.Content value="2">
+				<Panel userActivities={userActivities} />
+			</Tabs.Content>
+		</Tabs.Root>
 	);
 };
 
@@ -58,11 +67,11 @@ const Panel = ({ userActivities }: { userActivities: UserActivity[] }) => {
 	const cardBgColor = useColorModeValue("gray.200", "gray.600");
 
 	return (
-		<TabPanel>
-			<List display="flex" flexWrap="wrap" gap={4}>
+		<Box>
+			<List.Root display="flex" flexWrap="wrap" gap={4} listStyle="none">
 				{userActivities.map((activity) => {
 					return (
-						<ListItem
+						<List.Item
 							shadow="lg"
 							key={activity.id}
 							bgColor={cardBgColor}
@@ -71,12 +80,12 @@ const Panel = ({ userActivities }: { userActivities: UserActivity[] }) => {
 							overflow="hidden"
 						>
 							<Flex
-								as={Link}
-								to={`/activities/${activity.id}`}
+								asChild
 								flexDir="column"
 								alignItems="center"
 								justifyContent="center"
 							>
+								<Link to={`/activities/${activity.id}`}>
 								<Image
 									src={`/assets/categoryImages/${activity.category}.jpg`}
 									style={{ minHeight: 100, objectFit: "cover" }}
@@ -92,15 +101,14 @@ const Panel = ({ userActivities }: { userActivities: UserActivity[] }) => {
 										<div>{dayjs(activity.date).format("h:mm A")}</div>
 									</VStack>
 								</VStack>
+								</Link>
 							</Flex>
-						</ListItem>
+						</List.Item>
 					);
 				})}
-			</List>
-		</TabPanel>
+			</List.Root>
+		</Box>
 	);
 };
-
-// Panel.displayName = "UserActivitiesPanel";
 
 export default observer(ProfileActivities);

@@ -1,14 +1,7 @@
-import {
-	FormControl,
-	VisuallyHidden,
-	FormLabel,
-	Textarea,
-	FormErrorMessage,
-	TextareaProps,
-	useColorModeValue,
-} from "@chakra-ui/react";
+import { Textarea, type TextareaProps, VisuallyHidden } from "@chakra-ui/react";
 import { useField } from "formik";
-import React from "react";
+import { Field } from "../ui/field";
+import { useColorModeValue } from "../ui/color-mode";
 
 type Props = TextareaProps & {
 	name: string;
@@ -17,15 +10,18 @@ type Props = TextareaProps & {
 const InputTextArea = ({ name, ...rest }: Props) => {
 	const [field, meta] = useField(name);
 	const isInvalid = Boolean(meta.touched && meta.error);
+	const bg = useColorModeValue("gray.100", "gray.300");
 
 	return (
-		<FormControl id={name} isInvalid={isInvalid}>
-			<VisuallyHidden>
-				<FormLabel>{name}</FormLabel>
-			</VisuallyHidden>
+		<Field
+			id={name}
+			invalid={isInvalid}
+			errorText={isInvalid ? meta.error : undefined}
+			label={<VisuallyHidden>{name}</VisuallyHidden>}
+		>
 			<Textarea
 				placeholder={name}
-				bgColor={useColorModeValue("gray.100", "gray.300")}
+				bgColor={bg}
 				border={0}
 				color={"gray.700"}
 				resize="vertical"
@@ -36,9 +32,7 @@ const InputTextArea = ({ name, ...rest }: Props) => {
 				{...field}
 				{...rest}
 			/>
-
-			{isInvalid && <FormErrorMessage>{meta.error}</FormErrorMessage>}
-		</FormControl>
+		</Field>
 	);
 };
 

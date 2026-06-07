@@ -10,11 +10,11 @@ const ActivityList = () => {
 
 	return (
 		<>
-			<Stack spacing={8} mx={"auto"}>
+			<Stack gap={8} mx={"auto"}>
 				{groupedActivities.map(([group, list]) => (
 					<Fragment key={group}>
 						<Heading fontSize="2xl">{group}</Heading>
-						<Stack spacing={8} mx={"auto"}>
+						<Stack gap={8} mx={"auto"}>
 							{list?.map((act) => (
 								<ActivityListItem activity={act} key={act.id} />
 							))}

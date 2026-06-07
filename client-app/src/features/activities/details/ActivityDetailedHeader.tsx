@@ -3,12 +3,13 @@ import {
 	Box,
 	Button,
 	Container,
+	Fieldset,
 	Flex,
 	Heading,
 	Text,
-	useColorModeValue,
 	VStack,
 } from "@chakra-ui/react";
+import { useColorModeValue } from "../../../components/ui/color-mode";
 import { ClockIcon, MapPinIcon, TagIcon } from "@heroicons/react/24/solid";
 import dayjs from "dayjs";
 import { observer } from "mobx-react-lite";
@@ -49,7 +50,7 @@ const ActivityDetailedHeader = ({ activity }: Props) => {
 									{activity.title}
 								</Heading>
 								{activity.isCancelled && (
-									<Badge ml={4} mt={-2} display="flex" colorScheme="red" fontSize="lg">
+									<Badge ml={4} mt={-2} display="flex" colorPalette="red" fontSize="lg">
 										Activity is Cancelled
 									</Badge>
 								)}
@@ -76,15 +77,15 @@ const ActivityDetailedHeader = ({ activity }: Props) => {
 							</Flex>
 						</Flex>
 					</Flex>
-					<VStack as="fieldset" disabled={isLoading}>
+					<Fieldset.Root as={VStack} disabled={isLoading}>
 						{!activity?.isHost && activity?.isGoing && (
-							<Button w="full" colorScheme="yellow" size="lg" onClick={updateAttendance}>
+							<Button w="full" colorPalette="yellow" size="lg" onClick={updateAttendance}>
 								Cancel Attendance
 							</Button>
 						)}
 						{!activity?.isHost && !activity?.isGoing && (
 							<Button
-								colorScheme="teal"
+								colorPalette="teal"
 								size="lg"
 								onClick={updateAttendance}
 								disabled={activity.isCancelled}
@@ -95,25 +96,26 @@ const ActivityDetailedHeader = ({ activity }: Props) => {
 						{activity?.isHost && (
 							<>
 								<Button
-									colorScheme={activity.isCancelled ? "green" : "red"}
+									colorPalette={activity.isCancelled ? "green" : "red"}
 									onClick={cancelActivityToggle}
-									isLoading={isLoading}
+									loading={isLoading}
 								>
 									{activity.isCancelled ? "Re-activate Activity" : "Cancel Activity"}
 								</Button>
 								<Button
-									as={Link}
+									asChild
 									disabled={activity.isCancelled}
-									to={`/activities/${activity.id}/manage`}
 									w="full"
-									colorScheme="orange"
+									colorPalette="orange"
 									size="md"
 								>
-									Manage Event
+									<Link to={`/activities/${activity.id}/manage`}>
+										Manage Event
+									</Link>
 								</Button>
 							</>
 						)}
-					</VStack>
+					</Fieldset.Root>
 				</Flex>
 			</Container>
 		</Flex>

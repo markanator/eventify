@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Alert, AlertIcon, Stack } from "@chakra-ui/react";
-import React from "react";
+import { Alert, Stack } from "@chakra-ui/react";
 
 type Props = {
 	errors?: any;
@@ -11,10 +10,10 @@ const ValidationErrors = ({ errors }: Props) => {
 		<Stack mt={4}>
 			{errors &&
 				errors?.map((er: any, idx: any) => (
-					<Alert key={idx} status="error" variant="subtle">
-						<AlertIcon />
-						{er}
-					</Alert>
+					<Alert.Root key={idx} status="error" variant="subtle">
+						<Alert.Indicator />
+						<Alert.Content>{er}</Alert.Content>
+					</Alert.Root>
 				))}
 		</Stack>
 	);

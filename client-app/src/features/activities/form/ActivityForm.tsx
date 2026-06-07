@@ -1,4 +1,11 @@
-import { Box, Button, Flex, Heading, Stack, useColorModeValue } from "@chakra-ui/react";
+import {
+	Box,
+	Button,
+	Flex,
+	Heading,
+	Stack,
+} from "@chakra-ui/react";
+import { useColorModeValue } from "../../../components/ui/color-mode";
 import { Form, Formik, FormikProps } from "formik";
 import { observer } from "mobx-react-lite";
 import { useEffect, useMemo, useState } from "react";
@@ -67,7 +74,7 @@ const ActivityForm = () => {
 				{({ isSubmitting, dirty, isValid }: FormikProps<ActivityFormValues>) => (
 					<Form>
 						<Flex p={8} flex={1} align={"center"} justify={"center"}>
-							<Stack spacing={4} w={"full"} maxW={"md"}>
+							<Stack gap={4} w={"full"} maxW={"md"}>
 								<Heading fontSize={"2xl"}>{isEditing ? "Edit" : "Create"} an Activity</Heading>
 								<InputField name="title" />
 								<InputTextArea name="description" />
@@ -80,21 +87,28 @@ const ActivityForm = () => {
 								/>
 								<InputField name="city" />
 								<InputField name="venue" />
-								<Stack direction={"row"} justifyContent="center" spacing={6}>
+								<Stack direction={"row"} justifyContent="center" gap={6}>
 									<Button
-										as={Link}
-										to={isEditing ? `/activities/${activity?.id}` : "/activities"}
-										isLoading={isLoadingInitial || isSubmitting}
-										colorScheme={"gray"}
+										asChild
+										loading={isLoadingInitial || isSubmitting}
+										colorPalette={"gray"}
 										variant={"solid"}
 									>
-										Cancel
+										<Link
+											to={
+												isEditing
+													? `/activities/${activity?.id}`
+													: "/activities"
+											}
+										>
+											Cancel
+										</Link>
 									</Button>
 									<Button
-										isLoading={isLoadingInitial || isSubmitting}
+										loading={isLoadingInitial || isSubmitting}
 										disabled={isSubmitting || !dirty || !isValid}
 										type="submit"
-										colorScheme={"blue"}
+										colorPalette={"blue"}
 										variant={"solid"}
 									>
 										{isEditing ? "Edit" : "Submit"}
