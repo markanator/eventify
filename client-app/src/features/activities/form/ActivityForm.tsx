@@ -9,7 +9,7 @@ import { useColorModeValue } from "../../../components/ui/color-mode";
 import { Form, Formik, FormikProps } from "formik";
 import { observer } from "mobx-react-lite";
 import { useEffect, useMemo, useState } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router";
 import { v4 as uuid } from "uuid";
 import ScreenLoading from "~/components/ScreenLoading";
 import InputField from "~/components/forms/Input";

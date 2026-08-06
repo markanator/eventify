@@ -13,7 +13,7 @@ import { useColorModeValue } from "../../../components/ui/color-mode";
 import { ClockIcon, MapPinIcon, TagIcon } from "@heroicons/react/24/solid";
 import dayjs from "dayjs";
 import { observer } from "mobx-react-lite";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import CalendarDate from "~/components/CalendarDate";
 import { useStoreContext } from "~/stores/store";
 import { Activity } from "~/types";

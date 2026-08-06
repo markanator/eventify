@@ -5,7 +5,7 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import { useColorModeValue } from "../components/ui/color-mode";
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router";
 import Navbar from "../components/Navbar";
 
 function App() {

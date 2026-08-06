@@ -12,7 +12,7 @@ import { Avatar } from "../../../components/ui/avatar";
 import { useColorModeValue } from "../../../components/ui/color-mode";
 import { MapPinIcon } from "@heroicons/react/24/solid";
 import { observer } from "mobx-react-lite";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import CalendarDate from "~/components/CalendarDate";
 import { Activity } from "~/types";
 import ListItemAttendee from "./ListItemAttendee";

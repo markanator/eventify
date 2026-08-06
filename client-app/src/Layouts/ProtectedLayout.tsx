@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "react-router";
 import { useStoreContext } from "~/stores/store";
 
 export default function ProtectedLayout({ children }: { children: ReactNode }) {

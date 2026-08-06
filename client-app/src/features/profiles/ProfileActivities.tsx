@@ -10,7 +10,7 @@ import {
 import dayjs from "dayjs";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { useStoreContext } from "~/stores/store";
 import type { UserActivity } from "~/types";
 import { useColorModeValue } from "../../components/ui/color-mode";

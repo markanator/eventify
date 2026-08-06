@@ -1,7 +1,7 @@
 import { Button, Flex } from "@chakra-ui/react";
 import { Formik } from "formik";
 import React from "react";
-import { Form } from "react-router-dom";
+import { Form } from "react-router";
 import { useStoreContext } from "~/stores/store";
 import * as yup from "yup";
 import InputField from "~/components/forms/Input";

@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router";
 import { useStoreContext } from "~/stores/store";
 import ScreenLoading from "~/components/ScreenLoading";
 import { useAttachScripts } from "../hooks/useAttachScripts";

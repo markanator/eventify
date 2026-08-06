@@ -1,6 +1,6 @@
 import { Button, Separator, Flex, Heading, Stack } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { useStoreContext } from "~/stores/store";
 import LoginModal from "../users/LoginModal";
 import RegisterModal from "../users/RegisterModal";
