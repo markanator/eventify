@@ -7,7 +7,7 @@ import {
 import { Avatar } from "../../../components/ui/avatar";
 import { observer } from "mobx-react-lite";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { Profile } from "~/types";
 
 export const AttendeeListItem = observer(

@@ -10,7 +10,7 @@ import {
 	Stack,
 	Text,
 } from "@chakra-ui/react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router";
 import { NAV_ITEMS, type NavItem } from "./MobileNav";
 import { useColorModeValue } from "./ui/color-mode";
 

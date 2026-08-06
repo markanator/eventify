@@ -13,7 +13,7 @@ import {
 	useDisclosure,
 } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router";
 import { useStoreContext } from "~/stores/store";
 import { Avatar } from "./ui/avatar";
 import { useColorMode, useColorModeValue } from "./ui/color-mode";

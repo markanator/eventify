@@ -1,5 +1,5 @@
 import { HStack, Popover, Portal, useDisclosure } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import ProfileCard from "~/features/profiles/ProfileCard";
 import { Profile } from "~/types";
 import { Avatar } from "../../../components/ui/avatar";

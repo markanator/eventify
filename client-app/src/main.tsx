@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import { RouterProvider } from "react-router-dom";
+import { RouterProvider } from "react-router/dom";
 import { router } from "./app/Router";
 import { Provider } from "./components/ui/provider";
 import { Toaster } from "./components/ui/toaster";

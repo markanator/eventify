@@ -14,7 +14,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import { Form, Formik, FormikProps } from "formik";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink } from "react-router";
 import * as yup from "yup";
 import InputTextArea from "~/components/forms/InputTextArea";
 import { useStoreContext } from "~/stores/store";
