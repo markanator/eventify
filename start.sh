@@ -5,7 +5,7 @@ current_branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
 
 set -ex
 localCi(){
-	npm run build:client
+	pnpm run build:client
 	flyctl deploy
 }
 
