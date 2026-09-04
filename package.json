@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "client-app/src/main.tsx",
   "private": true,
-  "packageManager": "pnpm@10.33.0",
+  "packageManager": "pnpm@10.34.5",
   "scripts": {
     "build:client": "cd ./client-app/ && pnpm run build",
     "prepare": "husky install"
