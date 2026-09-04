@@ -1,4 +1,30 @@
 import type { CreateToasterReturn } from "@chakra-ui/react";
+import type { DetailedHTMLProps, HTMLAttributes } from "react";
+
+// Cropper.js v2 ships as native custom elements (<cropper-canvas>, <cropper-image>, ...).
+// These aren't part of React's built-in JSX.IntrinsicElements, so declare them
+// permissively (arbitrary kebab-case attributes/props are valid on custom elements).
+type CropperElementProps = DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> & {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	[key: string]: any;
+};
+
+// React 19 resolves the JSX namespace from `React.JSX` (re-exported via
+// react/jsx-runtime), not the ambient global `JSX` namespace, so augment it there.
+declare module "react" {
+	namespace JSX {
+		interface IntrinsicElements {
+			"cropper-canvas": CropperElementProps;
+			"cropper-image": CropperElementProps;
+			"cropper-shade": CropperElementProps;
+			"cropper-handle": CropperElementProps;
+			"cropper-selection": CropperElementProps;
+			"cropper-crosshair": CropperElementProps;
+			"cropper-grid": CropperElementProps;
+			"cropper-viewer": CropperElementProps;
+		}
+	}
+}
 
 export interface PaginationHeader {
 	currentPage: number;
