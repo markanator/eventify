@@ -3,7 +3,7 @@
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
-	"packageManager": "pnpm@10.34.5",
+	"packageManager": "pnpm@11.25.0",
 	"scripts": {
 		"dev": "vite --https",
 		"build": "tsc && vite build",
@@ -24,7 +24,7 @@
 		"@loadable/component": "^5.16.7",
 		"@microsoft/signalr": "^10.0.11",
 		"axios": "^1.20.0",
-		"cropperjs": "^1.6.3",
+		"cropperjs": "^2.2.0",
 		"dayjs": "^1.11.23",
 		"formik": "^2.4.9",
 		"framer-motion": "^13.2.0",
@@ -32,7 +32,6 @@
 		"mobx-react-lite": "^5.0.3",
 		"react": "^19.2.8",
 		"react-calendar": "^6.0.1",
-		"react-cropper": "^2.3.3",
 		"react-datepicker": "^9.1.0",
 		"react-dom": "^19.2.8",
 		"react-dropzone": "^20.1.1",
@@ -63,17 +62,10 @@
 		"vite": "^8.2.2",
 		"vite-plugin-mkcert": "^2.1.0",
 		"vite-tsconfig-paths": "^6.1.1",
-		"vitest": "^4.1.11"
+		"vitest": "^5.0.0"
 	},
 	"engines": {
 		"node": ">=22"
-	},
-	"pnpm": {
-		"overrides": {
-			"brace-expansion": "^5.0.9",
-			"undici": "^8.9.0",
-			"ws@>=7.0.0 <7.5.11": ">=7.5.11"
-		}
 	},
 	"browserslist": {
 		"production": [

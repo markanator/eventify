@@ -1,6 +1,6 @@
-import { Box, Button, Group, Flex, HStack, Text, VStack } from "@chakra-ui/react";
+import { Button, Group, Flex, HStack, Text, VStack } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import PhotoWidgetCropper from "./PhotoWidgetCropper";
 import PhotoWidgetDropzone from "./PhotoWidgetDropzone";
 
@@ -12,13 +12,16 @@ type Props = {
 const PhotoUploadWidget = ({ handlePhotoUpload, isUploading }: Props) => {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const [files, setFiles] = useState<any[]>([]);
-	const [cropper, setCropper] = useState<Cropper>();
+	const [getCroppedBlob, setGetCroppedBlob] = useState<(() => Promise<Blob | null>) | null>(null);
 
-	function onCrop() {
-		if (cropper) {
-			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-			cropper.getCroppedCanvas().toBlob((blob) => handlePhotoUpload(blob!));
-		}
+	const handleCropperReady = useCallback((getBlob: () => Promise<Blob | null>) => {
+		setGetCroppedBlob(() => getBlob);
+	}, []);
+
+	async function onCrop() {
+		if (!getCroppedBlob) return;
+		const blob = await getCroppedBlob();
+		if (blob) handlePhotoUpload(blob);
 	}
 
 	useEffect(() => {
@@ -42,13 +45,16 @@ const PhotoUploadWidget = ({ handlePhotoUpload, isUploading }: Props) => {
 				</Flex>
 				<Flex flex="0 0 33.33%" alignItems="center">
 					{files && files.length > 0 && (
-						<PhotoWidgetCropper setCropper={setCropper} imagePreview={files?.[0]?.preview} />
+						<PhotoWidgetCropper onReady={handleCropperReady} imagePreview={files?.[0]?.preview} />
 					)}
 				</Flex>
 				<Flex flex="0 0 33.33%">
 					{files && files.length > 0 && (
 						<Flex flexDir="column" alignItems="center" w="full">
-							<Box className="img-preview" minH={200} w="full" overflow="hidden" />
+							<cropper-viewer
+								selection="#photo-crop-selection"
+								style={{ display: "block", minHeight: "200px", width: "100%", overflow: "hidden" }}
+							/>
 							<Group attached mt={6}>
 								<Button size="lg" variant="solid" colorPalette="blue" loading={isUploading} onClick={onCrop}>
 									Save
