@@ -1,12 +1,4 @@
-import {
-	Box,
-	Flex,
-	Heading,
-	Image,
-	List,
-	Tabs,
-	VStack,
-} from "@chakra-ui/react";
+import { Box, Flex, Heading, Image, List, Tabs, VStack } from "@chakra-ui/react";
 import dayjs from "dayjs";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
@@ -79,28 +71,23 @@ const Panel = ({ userActivities }: { userActivities: UserActivity[] }) => {
 							borderRadius="md"
 							overflow="hidden"
 						>
-							<Flex
-								asChild
-								flexDir="column"
-								alignItems="center"
-								justifyContent="center"
-							>
+							<Flex asChild flexDir="column" alignItems="center" justifyContent="center">
 								<Link to={`/activities/${activity.id}`}>
-								<Image
-									src={`/assets/categoryImages/${activity.category}.jpg`}
-									style={{ minHeight: 100, objectFit: "cover" }}
-									w="auto"
-									h={150}
-									mb={2}
-									alt={activity.title}
-								/>
-								<VStack mb={3}>
-									<Heading fontSize="xl">{activity.title}</Heading>
-									<VStack>
-										<div>{dayjs(activity.date).format("MMMM D, YYYY")}</div>
-										<div>{dayjs(activity.date).format("h:mm A")}</div>
+									<Image
+										src={`/assets/categoryImages/${activity.category}.jpg`}
+										style={{ minHeight: 100, objectFit: "cover" }}
+										w="auto"
+										h={150}
+										mb={2}
+										alt={activity.title}
+									/>
+									<VStack mb={3}>
+										<Heading fontSize="xl">{activity.title}</Heading>
+										<VStack>
+											<div>{dayjs(activity.date).format("MMMM D, YYYY")}</div>
+											<div>{dayjs(activity.date).format("h:mm A")}</div>
+										</VStack>
 									</VStack>
-								</VStack>
 								</Link>
 							</Flex>
 						</List.Item>

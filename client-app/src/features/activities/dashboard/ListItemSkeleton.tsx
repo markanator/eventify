@@ -1,10 +1,4 @@
-import {
-	Box,
-	HStack,
-	Skeleton,
-	SkeletonCircle,
-	SkeletonText,
-} from "@chakra-ui/react";
+import { Box, HStack, Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 import { useColorModeValue } from "../../../components/ui/color-mode";
 import React from "react";
 

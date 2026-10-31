@@ -1,13 +1,5 @@
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import {
-	Collapsible,
-	Flex,
-	Icon,
-	Link,
-	Stack,
-	Text,
-	useDisclosure,
-} from "@chakra-ui/react";
+import { Collapsible, Flex, Icon, Link, Stack, Text, useDisclosure } from "@chakra-ui/react";
 import { useColorModeValue } from "./ui/color-mode";
 
 export const MobileNav = () => {

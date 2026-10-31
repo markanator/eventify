@@ -1,9 +1,4 @@
-import {
-	List,
-	Flex,
-	Badge,
-	Text,
-} from "@chakra-ui/react";
+import { List, Flex, Badge, Text } from "@chakra-ui/react";
 import { Avatar } from "../../../components/ui/avatar";
 import { observer } from "mobx-react-lite";
 import React from "react";

@@ -34,54 +34,19 @@ const ProfileContent = ({ profile }: Props) => {
 					<Tabs.Trigger value="3">Followers</Tabs.Trigger>
 					<Tabs.Trigger value="4">Following</Tabs.Trigger>
 				</Tabs.List>
-				<Tabs.Content
-					value="0"
-					mr={6}
-					bgColor={panelBg}
-					borderRadius="lg"
-					boxShadow="md"
-					w="full"
-				>
+				<Tabs.Content value="0" mr={6} bgColor={panelBg} borderRadius="lg" boxShadow="md" w="full">
 					<ProfileAbout />
 				</Tabs.Content>
-				<Tabs.Content
-					value="1"
-					mr={6}
-					bgColor={panelBg}
-					borderRadius="lg"
-					boxShadow="md"
-					w="full"
-				>
+				<Tabs.Content value="1" mr={6} bgColor={panelBg} borderRadius="lg" boxShadow="md" w="full">
 					<ProfilePhotos profile={profile} />
 				</Tabs.Content>
-				<Tabs.Content
-					value="2"
-					mr={6}
-					bgColor={panelBg}
-					borderRadius="lg"
-					boxShadow="md"
-					w="full"
-				>
+				<Tabs.Content value="2" mr={6} bgColor={panelBg} borderRadius="lg" boxShadow="md" w="full">
 					<ProfileActivities />
 				</Tabs.Content>
-				<Tabs.Content
-					value="3"
-					mr={6}
-					bgColor={panelBg}
-					borderRadius="lg"
-					boxShadow="md"
-					w="full"
-				>
+				<Tabs.Content value="3" mr={6} bgColor={panelBg} borderRadius="lg" boxShadow="md" w="full">
 					<ProfileFollowings />
 				</Tabs.Content>
-				<Tabs.Content
-					value="4"
-					mr={6}
-					bgColor={panelBg}
-					borderRadius="lg"
-					boxShadow="md"
-					w="full"
-				>
+				<Tabs.Content value="4" mr={6} bgColor={panelBg} borderRadius="lg" boxShadow="md" w="full">
 					<ProfileFollowings />
 				</Tabs.Content>
 			</Tabs.Root>

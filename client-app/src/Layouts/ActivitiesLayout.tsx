@@ -1,9 +1,4 @@
-import {
-	Box,
-	Flex,
-	Link,
-	Text,
-} from "@chakra-ui/react";
+import { Box, Flex, Link, Text } from "@chakra-ui/react";
 import { useColorModeValue } from "../components/ui/color-mode";
 import { Outlet } from "react-router";
 import Navbar from "../components/Navbar";

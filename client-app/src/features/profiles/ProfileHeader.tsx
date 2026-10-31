@@ -1,12 +1,4 @@
-import {
-	Separator,
-	Flex,
-	GridItem,
-	Heading,
-	HStack,
-	Text,
-	VStack,
-} from "@chakra-ui/react";
+import { Separator, Flex, GridItem, Heading, HStack, Text, VStack } from "@chakra-ui/react";
 import { Avatar } from "../../components/ui/avatar";
 import { useColorModeValue } from "../../components/ui/color-mode";
 import { observer } from "mobx-react-lite";

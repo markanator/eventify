@@ -1,10 +1,4 @@
-import {
-	Box,
-	Button,
-	Flex,
-	Heading,
-	Stack,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Stack } from "@chakra-ui/react";
 import { useColorModeValue } from "../../../components/ui/color-mode";
 import { Form, Formik, FormikProps } from "formik";
 import { observer } from "mobx-react-lite";
@@ -94,13 +88,7 @@ const ActivityForm = () => {
 										colorPalette={"gray"}
 										variant={"solid"}
 									>
-										<Link
-											to={
-												isEditing
-													? `/activities/${activity?.id}`
-													: "/activities"
-											}
-										>
+										<Link to={isEditing ? `/activities/${activity?.id}` : "/activities"}>
 											Cancel
 										</Link>
 									</Button>

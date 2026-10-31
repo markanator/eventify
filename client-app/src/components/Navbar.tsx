@@ -51,21 +51,12 @@ const Navbar = () => {
 					ml={{ base: -2 }}
 					display={{ base: "flex", md: "none" }}
 				>
-					<IconButton
-						onClick={onToggle}
-						variant={"ghost"}
-						aria-label={"Toggle Navigation"}
-					>
+					<IconButton onClick={onToggle} variant={"ghost"} aria-label={"Toggle Navigation"}>
 						{open ? <XMarkIcon width={12} height={12} /> : <Bars3Icon width={20} height={20} />}
 					</IconButton>
 				</Flex>
 				<Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }} alignItems="center">
-					<Text
-						asChild
-						textAlign={textAlign}
-						fontFamily={"heading"}
-						color={headingColor}
-					>
+					<Text asChild textAlign={textAlign} fontFamily={"heading"} color={headingColor}>
 						<NavLink to="/">Reactivities</NavLink>
 					</Text>
 
@@ -82,7 +73,11 @@ const Navbar = () => {
 					gap={6}
 				>
 					<Button onClick={toggleColorMode} variant="ghost" size="sm">
-						{colorMode === "light" ? <MoonIcon width={20} height={20} /> : <SunIcon width={20} height={20} />}
+						{colorMode === "light" ? (
+							<MoonIcon width={20} height={20} />
+						) : (
+							<SunIcon width={20} height={20} />
+						)}
 					</Button>
 					{!user ? (
 						<>

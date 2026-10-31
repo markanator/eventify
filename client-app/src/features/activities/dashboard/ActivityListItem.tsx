@@ -1,13 +1,4 @@
-import {
-	Badge,
-	Box,
-	Button,
-	Flex,
-	Heading,
-	HStack,
-	Image,
-	Text,
-} from "@chakra-ui/react";
+import { Badge, Box, Button, Flex, Heading, HStack, Image, Text } from "@chakra-ui/react";
 import { Avatar } from "../../../components/ui/avatar";
 import { useColorModeValue } from "../../../components/ui/color-mode";
 import { MapPinIcon } from "@heroicons/react/24/solid";
@@ -45,7 +36,9 @@ const ActivityListItem = ({ activity }: Props) => {
 						<HStack pt={1}>
 							{activity.isCancelled && <Badge colorPalette="red">Activity Cancelled</Badge>}
 							{activity.isHost && <Badge colorPalette="purple">Hosting</Badge>}
-							{activity.isGoing && !activity.isHost && <Badge colorPalette="green">Attending</Badge>}
+							{activity.isGoing && !activity.isHost && (
+								<Badge colorPalette="green">Attending</Badge>
+							)}
 							{!activity.isGoing && !activity.isHost && (
 								<Badge colorPalette="yellow">Not Attending</Badge>
 							)}

@@ -1,9 +1,4 @@
-import {
-	Center,
-	Flex,
-	Heading,
-	Text,
-} from "@chakra-ui/react";
+import { Center, Flex, Heading, Text } from "@chakra-ui/react";
 import { Avatar } from "../../components/ui/avatar";
 import { useColorModeValue } from "../../components/ui/color-mode";
 import { observer } from "mobx-react-lite";

@@ -1,8 +1,4 @@
-import {
-	Flex,
-	Heading,
-	Text,
-} from "@chakra-ui/react";
+import { Flex, Heading, Text } from "@chakra-ui/react";
 import { useColorModeValue } from "../../../components/ui/color-mode";
 import { observer } from "mobx-react-lite";
 import React from "react";
