@@ -1,10 +1,4 @@
-import {
-	Box,
-	Button,
-	Heading,
-	Text,
-	VStack,
-} from "@chakra-ui/react";
+import { Box, Button, Heading, Text, VStack } from "@chakra-ui/react";
 import { useColorModeValue } from "../../components/ui/color-mode";
 import { ErrorMessage, Form, Formik, FormikHelpers, FormikProps } from "formik";
 import { observer } from "mobx-react-lite";

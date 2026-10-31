@@ -56,10 +56,22 @@ const PhotoUploadWidget = ({ handlePhotoUpload, isUploading }: Props) => {
 								style={{ display: "block", minHeight: "200px", width: "100%", overflow: "hidden" }}
 							/>
 							<Group attached mt={6}>
-								<Button size="lg" variant="solid" colorPalette="blue" loading={isUploading} onClick={onCrop}>
+								<Button
+									size="lg"
+									variant="solid"
+									colorPalette="blue"
+									loading={isUploading}
+									onClick={onCrop}
+								>
 									Save
 								</Button>
-								<Button size="lg" variant="solid" colorPalette="red" disabled={isUploading} onClick={() => setFiles([])}>
+								<Button
+									size="lg"
+									variant="solid"
+									colorPalette="red"
+									disabled={isUploading}
+									onClick={() => setFiles([])}
+								>
 									Close
 								</Button>
 							</Group>

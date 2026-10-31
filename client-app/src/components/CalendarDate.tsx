@@ -1,7 +1,4 @@
-import {
-	Box,
-	Flex,
-} from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { useColorModeValue } from "./ui/color-mode";
 import dayjs from "dayjs";
 import { useMemo } from "react";

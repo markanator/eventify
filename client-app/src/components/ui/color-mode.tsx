@@ -62,11 +62,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
 		[colorMode, setColorMode, toggleColorMode],
 	);
 
-	return (
-		<ColorModeContext.Provider value={value}>
-			{children}
-		</ColorModeContext.Provider>
-	);
+	return <ColorModeContext.Provider value={value}>{children}</ColorModeContext.Provider>;
 }
 
 export function useColorMode() {
@@ -93,30 +89,29 @@ export function ColorModeIcon() {
 
 interface ColorModeButtonProps extends Omit<IconButtonProps, "aria-label"> {}
 
-export const ColorModeButton = React.forwardRef<
-	HTMLButtonElement,
-	ColorModeButtonProps
->(function ColorModeButton(props, ref) {
-	const { toggleColorMode } = useColorMode();
-	return (
-		<IconButton
-			onClick={toggleColorMode}
-			variant="ghost"
-			aria-label="Toggle color mode"
-			size="sm"
-			ref={ref}
-			{...props}
-			css={{
-				_icon: {
-					width: "5",
-					height: "5",
-				},
-			}}
-		>
-			<ColorModeIcon />
-		</IconButton>
-	);
-});
+export const ColorModeButton = React.forwardRef<HTMLButtonElement, ColorModeButtonProps>(
+	function ColorModeButton(props, ref) {
+		const { toggleColorMode } = useColorMode();
+		return (
+			<IconButton
+				onClick={toggleColorMode}
+				variant="ghost"
+				aria-label="Toggle color mode"
+				size="sm"
+				ref={ref}
+				{...props}
+				css={{
+					_icon: {
+						width: "5",
+						height: "5",
+					},
+				}}
+			>
+				<ColorModeIcon />
+			</IconButton>
+		);
+	},
+);
 
 export function LightMode(props: React.ComponentProps<typeof Span>) {
 	return (

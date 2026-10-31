@@ -1,12 +1,4 @@
-import {
-	Box,
-	Button,
-	Flex,
-	Heading,
-	HStack,
-	Link,
-	Text,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, HStack, Link, Text } from "@chakra-ui/react";
 import { Avatar } from "../../../components/ui/avatar";
 import { useColorModeValue } from "../../../components/ui/color-mode";
 import dayjs from "dayjs";

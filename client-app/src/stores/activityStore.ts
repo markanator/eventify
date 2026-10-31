@@ -90,11 +90,14 @@ export default class ActivityStore {
 
 	get groupedActivities() {
 		return Object.entries(
-			this.activitiesByDate.reduce((activityObj, act) => {
-				const dateKey = dayjs(act.date).format("MMMM, YYYY");
-				activityObj[dateKey] = activityObj[dateKey] ? [...activityObj[dateKey], act] : [act];
-				return activityObj;
-			}, {} as { [key: string]: Activity[] }),
+			this.activitiesByDate.reduce(
+				(activityObj, act) => {
+					const dateKey = dayjs(act.date).format("MMMM, YYYY");
+					activityObj[dateKey] = activityObj[dateKey] ? [...activityObj[dateKey], act] : [act];
+					return activityObj;
+				},
+				{} as { [key: string]: Activity[] },
+			),
 		);
 	}
 

@@ -11,14 +11,7 @@ const ActivityFilters = () => {
 	const bg = useColorModeValue("white", "gray.700");
 	return (
 		<>
-			<Flex
-				flexDir="column"
-				py={4}
-				bg={bg}
-				boxShadow={"sm"}
-				mb={8}
-				mt={[0, 0, 16]}
-			>
+			<Flex flexDir="column" py={4} bg={bg} boxShadow={"sm"} mb={8} mt={[0, 0, 16]}>
 				<Heading
 					mx={4}
 					as="h4"

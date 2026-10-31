@@ -1,8 +1,4 @@
-import axios, {
-	AxiosError,
-	AxiosResponse,
-	InternalAxiosRequestConfig,
-} from "axios";
+import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 import { PaginationResults } from "~/lib/PaginationResults";
 import { store } from "~/stores/store";
 import { sleep } from "../../utils/sleeper";

@@ -1,13 +1,4 @@
-import {
-	Badge,
-	Box,
-	Button,
-	Flex,
-	Heading,
-	IconButton,
-	Image,
-	VStack,
-} from "@chakra-ui/react";
+import { Badge, Box, Button, Flex, Heading, IconButton, Image, VStack } from "@chakra-ui/react";
 import { useColorModeValue } from "../../components/ui/color-mode";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import { observer } from "mobx-react-lite";

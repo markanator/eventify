@@ -18,12 +18,7 @@ const ScreenLoading = ({ content = "Loading..." }: Props) => {
 			w="100vw"
 			h="100vh"
 		>
-			<Spinner
-				borderWidth="4px"
-				animationDuration="0.65s"
-				color="blue.500"
-				size="xl"
-			/>
+			<Spinner borderWidth="4px" animationDuration="0.65s" color="blue.500" size="xl" />
 			<Text>{content}</Text>
 		</Flex>
 	);

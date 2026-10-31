@@ -1,8 +1,4 @@
-import {
-	NativeSelect,
-	type NativeSelectFieldProps,
-	VisuallyHidden,
-} from "@chakra-ui/react";
+import { NativeSelect, type NativeSelectFieldProps, VisuallyHidden } from "@chakra-ui/react";
 import { useField } from "formik";
 import { Field } from "../ui/field";
 import { useColorModeValue } from "../ui/color-mode";

@@ -1,10 +1,4 @@
-import {
-	Button,
-	CloseButton,
-	Dialog,
-	Portal,
-	useDisclosure,
-} from "@chakra-ui/react";
+import { Button, CloseButton, Dialog, Portal, useDisclosure } from "@chakra-ui/react";
 import RegisterForm from "./RegisterForm";
 
 const RegisterModal = () => {
@@ -14,10 +8,7 @@ const RegisterModal = () => {
 			<Button onClick={onOpen} variant="plain">
 				Register
 			</Button>
-			<Dialog.Root
-				open={open}
-				onOpenChange={(e) => (e.open ? onOpen() : onClose())}
-			>
+			<Dialog.Root open={open} onOpenChange={(e) => (e.open ? onOpen() : onClose())}>
 				<Portal>
 					<Dialog.Backdrop />
 					<Dialog.Positioner>

@@ -109,9 +109,7 @@ const ActivityDetailedHeader = ({ activity }: Props) => {
 									colorPalette="orange"
 									size="md"
 								>
-									<Link to={`/activities/${activity.id}/manage`}>
-										Manage Event
-									</Link>
+									<Link to={`/activities/${activity.id}/manage`}>Manage Event</Link>
 								</Button>
 							</>
 						)}
