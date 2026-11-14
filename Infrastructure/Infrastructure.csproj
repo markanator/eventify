@@ -6,10 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CloudinaryDotNet" Version="1.28.0" />
-    <PackageReference Include="Mailjet.Api" Version="4.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="CloudinaryDotNet" Version="1.29.3" />
+    <PackageReference Include="Mailjet.Api" Version="4.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.14" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.14" />
   </ItemGroup>
 
   <ItemGroup>
