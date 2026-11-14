@@ -10,7 +10,7 @@ namespace Application.Core
         public bool IsSuccess { get; set; }
         public T Data { get; set; }
         public string Error { get; set; }
-        public static Results<T> Success(T data) => new Results<T>{ IsSuccess = true, Data = data };
-        public static Results<T> Failure(string error) => new Results<T>{ IsSuccess = false, Error = error };
+        public static Results<T> Success(T data) => new Results<T> { IsSuccess = true, Data = data };
+        public static Results<T> Failure(string error) => new Results<T> { IsSuccess = false, Error = error };
     }
 }
