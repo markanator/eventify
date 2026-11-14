@@ -43,9 +43,9 @@ namespace API.Extensions
                             });
             });
             // to allow for CQRS + mediator pattern
-            services.AddMediatR(typeof(List.Handler).Assembly);
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(List.Handler).Assembly));
             // allows for use of autoMapper throughout the project
-            services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+            services.AddAutoMapper(cfg => { }, typeof(MappingProfiles).Assembly);
             // Dep Inj
             // add ability to get user from httpContext from any authenticated reqs
             services.AddScoped<IUserAccessor, UserAccessor>();

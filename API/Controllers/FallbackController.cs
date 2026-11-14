@@ -7,13 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-	[AllowAnonymous]
-	public class FallbackController : Controller
-	{
-		public IActionResult Index()
-		{
-			var pathToIndex = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "index.html");
-			return PhysicalFile(pathToIndex, "text/HTML");
-		}
-	}
+    [AllowAnonymous]
+    public class FallbackController : Controller
+    {
+        public IActionResult Index()
+        {
+            var pathToIndex = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "index.html");
+            return PhysicalFile(pathToIndex, "text/HTML");
+        }
+    }
 }
