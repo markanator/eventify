@@ -28,15 +28,15 @@
 		"dayjs": "^1.11.23",
 		"formik": "^2.4.9",
 		"framer-motion": "^14.13.0",
-		"mobx": "^7.1.6",
-		"mobx-react-lite": "^5.1.2",
+		"mobx": "^7.1.7",
+		"mobx-react-lite": "^5.1.3",
 		"react": "^19.3.1",
 		"react-calendar": "^6.0.1",
 		"react-datepicker": "^9.1.0",
 		"react-dom": "^19.3.1",
-		"react-dropzone": "^20.2.0",
+		"react-dropzone": "^20.2.1",
 		"react-infinite-scroller": "^1.2.6",
-		"react-router": "^8.5.1",
+		"react-router": "^8.5.2",
 		"rimraf": "^6.1.4",
 		"uuid": "^14.0.3",
 		"yup": "^1.7.1"
@@ -44,7 +44,7 @@
 	"devDependencies": {
 		"@testing-library/jest-dom": "^7.0.1",
 		"@testing-library/react": "^16.3.3",
-		"@testing-library/user-event": "^14.6.10",
+		"@testing-library/user-event": "^14.6.13",
 		"@types/facebook-js-sdk": "^3.3.13",
 		"@types/loadable__component": "^5.13.10",
 		"@types/node": "^26.6.6",
@@ -62,7 +62,7 @@
 		"vite": "^8.3.8",
 		"vite-plugin-mkcert": "^2.1.0",
 		"vite-tsconfig-paths": "^6.1.1",
-		"vitest": "^5.1.0"
+		"vitest": "^5.1.1"
 	},
 	"engines": {
 		"node": "26.13.1"
